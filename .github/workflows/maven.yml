@@ -95,6 +95,27 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
       - name: Build
         run: ./mvnw --no-transfer-progress -V -B -fae -s .github/settings.xml -e "-DtrimStackTrace=false" "-Dsurefire.rerunFailingTestsCount=1" "-DskipTests install
+
+      - name: CodeMR Generate CI Settings
+        uses: ./.github/actions/codemr-mvn-generate-ci
+        with:
+          mvn-ext-args: '-s settings.xml'
+
+      - name: CodeMR Analyze Action
+        uses: ./.github/actions/codemr-analyze-action
+        with:
+          clientId: AAA # ${{ secrets.CODEMR_CLIENT_ID }}
+          clientSecret: BBB  # ${{ secrets.CODEMR_CLIENT_SECRET }}
+
+      - name: Upload CodeMR Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: cmr-test
+          path: |
+            ./codemr/selenide.crawler/*
+            ./codemr/idmap.json
+            ./codemr.ci
+
 #       - name: Upload Test Reports
 #         if: always()
 #         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
