@@ -99,7 +99,7 @@ jobs:
       - name: CodeMR Generate CI Settings
         uses: ./.github/actions/codemr-mvn-generate-ci
         with:
-          mvn-ext-args: '-s settings.xml'
+          mvn-ext-args: '-s .github/settings.xml'
 
       - name: CodeMR Analyze Action
         uses: ./.github/actions/codemr-analyze-action
