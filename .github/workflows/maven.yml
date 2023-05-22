@@ -45,7 +45,7 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java_version }}
       - name: checkout private codemr action
-        uses: actions/checkout@v3.5.2                        
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2                     
         with:
           repository: ekatr1/cmr-docker-action
           token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
@@ -53,7 +53,7 @@ jobs:
           ref: refs/tags/v0.2
 
       - name: checkout private codemr-mvn-generate-ci
-        uses: actions/checkout@v@v3.5.2                            
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2                            
         with:
           repository: ekatr1/codemr-mvn-generate-ci
           token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
