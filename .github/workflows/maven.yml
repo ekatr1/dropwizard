@@ -65,7 +65,9 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
+
+#           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache local Maven repository
         uses: actions/cache@v2
@@ -112,9 +114,9 @@ jobs:
         with:
           name: cmr-test
           path: |
-            ./codemr/selenide.crawler/*
-            ./codemr/idmap.json
-            ./codemr.ci
+            ./codemr/*
+#            ./codemr/selenide.crawler/*
+#            ./codemr/idmap.json
 
 #       - name: Upload Test Reports
 #         if: always()
