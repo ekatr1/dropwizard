@@ -74,16 +74,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-
-#       - name: get missing dependency file
-#         uses: wei/wget@v1
-#         with:
-#           args: -O je-5.0.84.jar https://raw.githubusercontent.com/ekatr1/missing_jars/main/je-5.0.84.jar
-
-#       - name : copy missing dependency file
-#         run : "mkdir -p $HOME/.m2/repository/com/sleepycat/je/5.0.84/ && mv je-5.0.84.jar $HOME/.m2/repository/com/sleepycat/je/5.0.84/"
-          
-          
       - name: Cache SonarCloud packages
         uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
         if: ${{ env.SONAR_TOKEN != null && env.SONAR_TOKEN != '' && matrix.java_version == '11'  && matrix.os == 'ubuntu-latest' }}
