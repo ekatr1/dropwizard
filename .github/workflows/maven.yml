@@ -75,13 +75,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: get missing dependency file
-        uses: wei/wget@v1
-        with:
-          args: -O je-5.0.84.jar https://raw.githubusercontent.com/ekatr1/missing_jars/main/je-5.0.84.jar
+#       - name: get missing dependency file
+#         uses: wei/wget@v1
+#         with:
+#           args: -O je-5.0.84.jar https://raw.githubusercontent.com/ekatr1/missing_jars/main/je-5.0.84.jar
 
-      - name : copy missing dependency file
-        run : "mkdir -p $HOME/.m2/repository/com/sleepycat/je/5.0.84/ && mv je-5.0.84.jar $HOME/.m2/repository/com/sleepycat/je/5.0.84/"
+#       - name : copy missing dependency file
+#         run : "mkdir -p $HOME/.m2/repository/com/sleepycat/je/5.0.84/ && mv je-5.0.84.jar $HOME/.m2/repository/com/sleepycat/je/5.0.84/"
           
           
       - name: Cache SonarCloud packages
