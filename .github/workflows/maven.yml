@@ -93,9 +93,8 @@ jobs:
 
       - name: CodeMR Analyze Action
         uses: ./.github/actions/codemr-analyze-action
-        with:
-          clientId: AAA # ${{ secrets.CODEMR_CLIENT_ID }}
-          clientSecret: BBB  # ${{ secrets.CODEMR_CLIENT_SECRET }}
+        env:
+          QC_TOKEN: ${{ secrets.QC_TOKEN }}
 
       - name: Upload CodeMR Report
         uses: actions/upload-artifact@v3
