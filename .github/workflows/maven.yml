@@ -58,7 +58,7 @@ jobs:
           repository: ekatr1/codemr-mvn-generate-ci
           token: ${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}
           path: .github/actions/codemr-mvn-generate-ci
-          ref: refs/tags/v0.20
+          ref: refs/tags/v0.21
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
