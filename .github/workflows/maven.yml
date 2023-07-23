@@ -107,14 +107,13 @@ jobs:
       - name: Zip CodeMR analysis files
         run: mkdir codemr_out && zip -j ./codemr_out/release_${GITHUB_SHA:0:8}.zip ./codemr/*/*.*
 
-# ${GITHUB_REF##*/}_${{github.run_id}}}
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
           FTP_SERVER:  test-sftpserver.ddns.net   # ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: github-ci # ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ci # ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: codemr_out
+          LOCAL_DIR: ./codemr_out/
           METHOD: sftp
           PORT: 2022
           ARGS: --delete
