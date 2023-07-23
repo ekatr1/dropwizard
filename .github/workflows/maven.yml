@@ -104,13 +104,20 @@ jobs:
             ./codemr/*
 #            ./codemr/selenide.crawler/*
 #            ./codemr/idmap.json
+
+      - uses: vimtor/action-zip@v1
+        with:
+          files: codemr/
+          recursive: false
+          dest: ${{ github.workspace }}/tmp/cmr.zip
+# ${GITHUB_REF##*/}_${{github.run_id}}}
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
           FTP_SERVER:  test-sftpserver.ddns.net   # ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: github-ci # ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ci # ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./codemr/
+          LOCAL_DIR: ${{ github.workspace }}/tmp/
           METHOD: sftp
           PORT: 2022
           ARGS: --delete
