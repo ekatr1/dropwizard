@@ -104,12 +104,9 @@ jobs:
             ./codemr/*
 #            ./codemr/selenide.crawler/*
 #            ./codemr/idmap.json
+      - name: Zip CodeMR analysis files
+        run: zip -j ./codemr_out/release_${GITHUB_SHA:0:8}.zip ./codemr/*/*.*
 
-      - uses: vimtor/action-zip@v1
-        with:
-          files: codemr/
-          recursive: false
-          dest: ./codemr_out/cmr.zip
 # ${GITHUB_REF##*/}_${{github.run_id}}}
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
