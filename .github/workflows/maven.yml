@@ -105,7 +105,7 @@ jobs:
 #            ./codemr/selenide.crawler/*
 #            ./codemr/idmap.json
       - name: Zip CodeMR analysis files
-        run: zip -j ./codemr_out/release_${GITHUB_SHA:0:8}.zip ./codemr/*/*.*
+        run: mkdir codemr_out && zip -j ./codemr_out/release_${GITHUB_SHA:0:8}.zip ./codemr/*/*.*
 
 # ${GITHUB_REF##*/}_${{github.run_id}}}
       - name: FTP-Deploy-Action
