@@ -109,7 +109,7 @@ jobs:
         with:
           files: codemr/
           recursive: false
-          dest: ${{ github.workspace }}/tmp/cmr.zip
+          dest: ./codemr_out/cmr.zip
 # ${GITHUB_REF##*/}_${{github.run_id}}}
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
@@ -117,7 +117,7 @@ jobs:
           FTP_SERVER:  test-sftpserver.ddns.net   # ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: github-ci # ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ci # ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ${{ github.workspace }}/tmp/
+          LOCAL_DIR: codemr_out
           METHOD: sftp
           PORT: 2022
           ARGS: --delete
