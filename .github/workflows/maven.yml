@@ -104,7 +104,16 @@ jobs:
             ./codemr/*
 #            ./codemr/selenide.crawler/*
 #            ./codemr/idmap.json
-
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER:  test-sftpserver.ddns.net   # ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: github-ci # ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ci # ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./codemr/
+          METHOD: sftp
+          PORT: 2022
+          ARGS: --delete
 #       - name: Upload Test Reports
 #         if: always()
 #         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
